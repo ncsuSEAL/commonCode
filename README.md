@@ -1,2 +1,2 @@
 # commonCode
-A place for common code functions for SEAL
+A place for common non-R code functions for SEAL
