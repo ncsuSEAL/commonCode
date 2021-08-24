@@ -1,3 +1,0 @@
-[submodule "hls_download/hls-super-script"]
-	path = hls_download/hls-super-script
-	url = https://git.earthdata.nasa.gov/scm/lpdur/hls-super-script.git
