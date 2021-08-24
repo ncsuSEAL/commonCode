@@ -57,7 +57,7 @@ def parser() -> argparse.Namespace:
         "-l", "--log", default="./failed.txt", help="File listing failed downloads"
     )
     pargs.add_argument(
-        "--threads",
+        "-p", "--processes",
         default=mp.cpu_count() // 2,
         help="Number of threads to split download between",
     )
@@ -150,7 +150,7 @@ def main():
     tiles = args.tiles
     years = args.years
     logfile = args.log
-    processes = args.threads
+    processes = args.processes
 
     # Make individual directories
     outdir.mkdir(parents=True, exist_ok=True)
