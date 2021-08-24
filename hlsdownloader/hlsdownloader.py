@@ -100,7 +100,6 @@ def downloader(path: str, outdir: Union[str, Path], logfile: str) -> None:
 
 
 def main():
-    import sys
 
     start = time.time()
     args = parser()
