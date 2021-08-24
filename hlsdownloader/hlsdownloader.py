@@ -33,9 +33,9 @@ class Colors:
 #############
 # Core
 def parser() -> argparse.Namespace:
-    '''
+    """
     Command line argument parser
-    '''
+    """
     pargs = argparse.ArgumentParser(
         description="CLI tool for downloading v1.4 Harmonized Landsat Sentinel products. "
         "Offers multiprocessing support"
@@ -57,7 +57,8 @@ def parser() -> argparse.Namespace:
         "-l", "--log", default="./failed.txt", help="File listing failed downloads"
     )
     pargs.add_argument(
-        "-p", "--processes",
+        "-p",
+        "--processes",
         default=mp.cpu_count() // 2,
         help="Number of threads to split download between",
     )
@@ -65,7 +66,7 @@ def parser() -> argparse.Namespace:
 
 
 def construct_dir_urls(sensors: list, tiles: list, years: list) -> list:
-    '''
+    """
     Construct the urls for file directories
 
     Args:
@@ -75,7 +76,7 @@ def construct_dir_urls(sensors: list, tiles: list, years: list) -> list:
 
     Returns:
         list
-    '''
+    """
     tile_urls = []
     for sensor in sensors:
         for tile in tiles:
@@ -87,7 +88,7 @@ def construct_dir_urls(sensors: list, tiles: list, years: list) -> list:
 
 
 def construct_file_urls(dir_urls: list) -> list:
-    '''
+    """
     Construct urls for individual files
 
     Args:
@@ -95,7 +96,7 @@ def construct_file_urls(dir_urls: list) -> list:
 
     Returns:
         List
-    '''
+    """
     file_paths = []
     for url in dir_urls:
         req = urlopen(url)
@@ -114,14 +115,14 @@ def construct_file_urls(dir_urls: list) -> list:
 
 
 def downloader(path: str, outdir: Union[str, Path], logfile: str) -> None:
-    '''
+    """
     Helper function to download individual files
 
     Args:
         path
         outdir
         logfile
-    '''
+    """
     file_name = path.split("/")[-1]
     outpath = outdir / file_name[4:7] / file_name
     print(outpath)
@@ -165,7 +166,6 @@ def main():
     dir_urls = construct_dir_urls(SENSORS, tiles, years)
     file_urls = construct_file_urls(dir_urls)
 
-
     # Create processing pool
     pool = mp.Pool(processes)
     print(f"Total files found: {len(file_urls)}")
@@ -179,3 +179,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
