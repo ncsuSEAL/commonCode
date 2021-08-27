@@ -60,6 +60,7 @@ def parser() -> argparse.Namespace:
         "-p",
         "--processes",
         default=mp.cpu_count() // 2,
+        type=int,
         help="Number of threads to split download between",
     )
     return pargs.parse_args()
