@@ -80,10 +80,10 @@ for file in `find $indir -name "*.hdf" -type f`; do
     if [ "$verbose" -eq "1" ]; then
         printf "$(date +"%r")\tclipping $filename to $bbox\n"
     fi
-    gdal_translate -sds "$file" "${basefile}_tr.tif" -projwin $bbox \
+    gdal_translate -sds "$file" "${basefile}_translate.tif" -projwin $bbox \
         -a_nodata "$nodata" -q
-    gdal_merge.py -seperate -o "${basefile}_clipped_17RMP_Jacksonville.tif" \
-        "$basefile"_tr*tif -n "$nodata" -a_nodata "$nodata" -q
+    gdal_merge.py -seperate -o "${basefile}_clipped.tif" \
+        "$basefile"_translate*tif -n "$nodata" -a_nodata "$nodata" -q
     rm -rf "$basefile"_tr*tif
 done
 
