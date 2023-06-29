@@ -95,8 +95,11 @@ def identify_tiles(aoi_path: str, mgrs_path: str) -> list:
 
     # Load mgrs geojson
     mgrs_geo = gpd.read_file(mgrs_path)
+    mgrs_geo = mgrs_geo.set_crs("EPSG:4326")
+
     # Load aoi geojson
     aoi_geo = gpd.read_file(aoi_path)
+    aoi_geo = aoi_geo.set_crs("EPSG:4326")
 
     # Find tiles where they intersect
     tiles = list(gpd.overlay(mgrs_geo, aoi_geo, how = "intersection")['Name'].unique())
@@ -254,7 +257,7 @@ def downloader(subset_list: list, tiles: list, outdir: str) -> list:
 
                 # note '-m' flag issue can happen depending on 
                 # python installation, see https://bugs.python.org/issue33725
-                os.system(f"gsutil -m cp -r {file}/ {dir_outpath}/.")
+                os.system(f"gsutil -o GSUtil:parallel_process_count=1 -o GSUtil:parallel_thread_count=24 -m cp -r {file}/ {dir_outpath}/.")
 
     # Download for one tile
     if len(tiles) == 1:
@@ -285,7 +288,7 @@ def downloader(subset_list: list, tiles: list, outdir: str) -> list:
 
             # note '-m' flag issue can happen depending on 
             # python installation, see https://bugs.python.org/issue33725
-            os.system(f"gsutil -m cp -r {file}/ {dir_outpath}/.")
+            os.system(f"gsutil -o GSUtil:parallel_process_count=1 -o GSUtil:parallel_thread_count=24 -m cp -r {file}/ {dir_outpath}/.")
 
 
 def main():
