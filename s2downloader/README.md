@@ -6,25 +6,27 @@
 If you need data before this time period then you should download L1C data and process using Sen2Cor.
 
 ### Command Line Arguments:
--o\
---outdir\
-type=str\
+```
+-o, --outdir
+type=str
 Output directory where all images will be downloaded into
-
--i\
---input_aoi\
-type=str\
-Path to geojson aoi
-        
--s\
---start\
-type=str\
+```
+```
+-i, --input_aoi
+type=str
+Path to geojson AOI
+```
+```   
+-s, --start
+type=str
 Start date in the form YYYY-MM-DD
-        
--e\
---end\
-type=str\
+```
+```
+-e, --end
+type=str
 End date in the form YYYY-MM-DD
+```
+
     
 ### Example:
 ```
