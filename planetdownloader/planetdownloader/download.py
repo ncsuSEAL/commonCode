@@ -88,9 +88,10 @@ async def download_orders(order_names, orders_of_interest, OUT_DIR, PROCESSES):
         #     cl.download_order, [(order_id, OUT_DIR) for order_id in orders_of_interest]
         # )
         # return result
-        order_path = Path(OUT_DIR, order_names[3])
-        order_path.mkdir(parents=True, exist_ok=True)
-        await cl.download_order(orders_of_interest[3], order_path)
+        for order_num in range(len(order_names)):
+            order_path = Path(OUT_DIR, order_names[order_num])
+            order_path.mkdir(parents=True, exist_ok=True)
+            await cl.download_order(orders_of_interest[order_num], order_path)
 
 
 # outcome = asyncio.run(download_order(cl, orders_of_interest[0], OUT_DIR))

@@ -78,7 +78,7 @@ def add_arguments(parser):
         "--ids",
         help="Path to directory of files that include comma-separated lists of image IDs to download",
         type=Path,
-        required=True,
+        required=False,
     )
     order_p.add_argument(
         "-t",
@@ -152,7 +152,13 @@ def add_arguments(parser):
 # Combines all of the user's image constraints into a group of filters
 # TODO: add view angle, permission filter, standard quality filter, clear pct, and also max/limit of results to return (0 if no maximum)
 def create_combined_filter(
-    AOI_POLY, ID_PATH, ITEM_TYPE, BUNDLE, START_DATE, END_DATE, MAX_CLOUDS
+    # AOI_POLY, ID_PATH, ITEM_TYPE, BUNDLE, START_DATE, END_DATE, MAX_CLOUDS
+    AOI_POLY,
+    ITEM_TYPE,
+    BUNDLE,
+    START_DATE,
+    END_DATE,
+    MAX_CLOUDS,
 ):
     asset_filter = data_filter.asset_filter(BUNDLE)
     geom_filter = data_filter.geometry_filter(AOI_POLY)
@@ -256,7 +262,7 @@ async def list_orders(START_DATE, END_DATE, ORDER_STATE):
 
 def order_imagery(
     AOI_POLY,
-    ID_PATH,
+    # ID_PATH,
     ITEM_TYPE,
     BUNDLE,
     START_DATE,
@@ -279,7 +285,13 @@ def order_imagery(
 
         # Create a single filter with all of the user's needs
         combined_filter = create_combined_filter(
-            geom, ID_PATH, ITEM_TYPE, BUNDLE, START_DATE, END_DATE, MAX_CLOUDS
+            # geom, ID_PATH, ITEM_TYPE, BUNDLE, START_DATE, END_DATE, MAX_CLOUDS
+            geom,
+            ITEM_TYPE,
+            BUNDLE,
+            START_DATE,
+            END_DATE,
+            MAX_CLOUDS,
         )
 
         item_list = asyncio.run(search_planet_api(poly_id, combined_filter, ITEM_TYPE))

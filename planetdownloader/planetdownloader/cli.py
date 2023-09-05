@@ -12,7 +12,7 @@ import multiprocessing as mp
 
 # Constant variables
 AOI_POLY = ""
-ID_PATH = ""
+# ID_PATH = ""
 ITEM_TYPE = ""
 BUNDLE = ""
 START_DATE = ""
@@ -138,7 +138,8 @@ def main():
         # Assign arguments to be the values of the constant variables
         # print("It was order!")
         AOI_POLY = prep_dir(args.geojson)
-        ID_PATH = prep_dir(args.ids)
+        if args.ids is not None:
+            ID_PATH = prep_dir(args.ids)
         ITEM_TYPE = args.itemtype
         BUNDLE = args.bundle
         START_DATE = args.start
@@ -151,7 +152,7 @@ def main():
             # Order imagery using the user's arguments
             result = order.order_imagery(
                 AOI_POLY,
-                ID_PATH,
+                # ID_PATH,
                 ITEM_TYPE,
                 BUNDLE,
                 START_DATE,
@@ -167,7 +168,7 @@ def main():
                 # Order the imagery for this geojson using the user's arguments
                 result = order.order_imagery(
                     polygon_file,
-                    ID_PATH,
+                    # ID_PATH,
                     ITEM_TYPE,
                     BUNDLE,
                     START_DATE,
