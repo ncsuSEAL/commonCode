@@ -2,8 +2,9 @@
 #### Last edited June 16, 2023
 #### Editors: Izzi
 
-## Step 1: Create a virtual environment and install the Planet SDK for Python
+## Prerequisites: A virtual environment and the Planet SDK for Python
 NOTE: You need to be using Python3 for this.
+
 If you don't have the Planet SDK: 
 1. In your terminal, type: `python3 -m venv ~/.venv/planet-v2`
 2. Then, type `source ~/.venv/planet-v2/bin/activate` to activate the virtual environment
@@ -18,3 +19,24 @@ You now have access to Planet's SDK. See all commands with `planet --help`, but 
 - `orders` for interacting with the Orders API
 
 This is the tl;dr version; find Planet's more thorough walkthrough [here](https://planet-sdk-for-python-v2.readthedocs.io/en/latest/get-started/quick-start-guide/#step-1-install-python-37-and-a-virtual-environment).
+
+## Using the CLI
+If you type `python planetdownloader --help` in your terminal, you should see: 
+usage: planetdownloader [-h] {order,download} ...
+
+CLI tool for ordering and downloading Planet products
+
+positional arguments:
+  {order,download}
+    order           Order Planet data
+    download        Download Planet orders
+
+options:
+  -h, --help        show this help message and exit
+
+NOTE: Thanks for using planetdownloader! This is a work in progress; please email
+irhinks@ncsu.edu if you run into any issues.
+
+## Step 2: Order your images of interest
+
+## Step 3: Download your orders
